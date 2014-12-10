@@ -31,9 +31,8 @@ ConsumptionTaxRate=parseFloat(document.form1.ConsumptionTaxRate.value);
 KetaMarume=parseFloat(document.form1.KetaMarume.value);
 if(isNaN(costTumiageKyoutsuuKasetsu) || costTumiageKyoutsuuKasetsu<0){costTumiageKyoutsuuKasetsu=0;}
 if(isNaN(costTumiageGenbaKanri) || costTumiageGenbaKanri<0){costTumiageGenbaKanri=0;}
-//直接工事費及び工期が未入力の場合は参考として直接工事費14億円、工期8ヶ月（月間出来高約1.75億円）を表示.
-if(isNaN(costChokusetsuKouji) || costChokusetsuKouji<=0){costChokusetsuKouji=1.4*Math.pow(10,9);}
-if(isNaN(Kouki) || Kouki<=0){Kouki=8;}
+//直接工事費または工期が未入力の場合は参考として直接工事費14億円、工期8ヶ月（月間出来高約1.75億円）を表示.
+if(isNaN(costChokusetsuKouji) || costChokusetsuKouji<=0 || isNaN(Kouki) || Kouki<=0){costChokusetsuKouji=1.4*Math.pow(10,9);Kouki=8;}
 T=Kouki;
 }
 
