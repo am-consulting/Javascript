@@ -17,7 +17,7 @@ function calculation(){
 	passedYears01=parseFloat(document.form1.passedYears01.value);
 	passedYears02=parseFloat(document.form1.passedYears02.value);
 	reconstructionCost=parseFloat(document.form1.reconstructionCost.value);
-	correctiveCoefficient=1;
+	correctiveCoefficient=parseFloat(document.form1.correctiveCoefficient.value);
 	taxRate=parseFloat(document.form1.taxRate.value);
 	if(isNaN(passedYears01) || passedYears01<1){
 		passedYears01=1;
@@ -132,7 +132,7 @@ function calculation(){
 	applicableType=parseFloat(buildingType+structure);
 	applicableType=Math.round(Math.floor(applicableType*Math.pow(10,7))/10)/Math.pow(10,6);
 	listType=new Array();
-	listType=["事務所,銀行用建物","住宅,アパート用建物","百貨店,ホテル,旅館,料亭,待合,劇場及び娯楽場用建物","店舗及び病院用建物","市場用建物","公衆浴場用建物","工場,倉庫,発電所,変電所,停車場及び車庫用建物(1)","工場,倉庫,発電所,変電所,停車場及び車庫用建物(2)","工場,倉庫,発電所,変電所,停車場及び車庫用建物(3)"];
+	listType=["事務所,銀行用建物及び2-9以外の建物","住宅,アパート用建物","店舗及び病院用建物","百貨店,ホテル,劇場及び娯楽場用建物","市場用建物","公衆浴場用建物","工場,倉庫,発電所,変電所,停車場及び車庫用建物(1)","工場,倉庫,発電所,変電所,停車場及び車庫用建物(2)","工場,倉庫,発電所,変電所,停車場及び車庫用建物(3)"];
 	listStructure=new Array();
 	listStructure=["SRC造/RC造","煉瓦造/CB造/石造","S造：4mm＜肉厚","S造：3mm＜肉厚≦4mm","S造：肉厚≦3mm"];
 	if(passedYears01<passedYears02){
@@ -175,7 +175,7 @@ function calculation(){
 		number[2]=totalTax;
 		number[3]=reconstructionCost;
 		thousandSeparator();
-		simpleResult=listType[buildingType]+"\n"+listStructure[structure/10-1]+"\n"+"再建築費(万円)："+number[3]+"\n"+"対象期間："+passedYears01+"年 - "+passedYears02+"年\n"+"対象期間合計税額(万円)："+number[2]+"\n"+"適用税率(%)："+taxRate;
+		simpleResult=listType[buildingType]+"\n"+listStructure[structure/10-1]+"\n"+"再建築費(万円)："+number[3]+"\n"+"対象期間："+passedYears01+"年 - "+passedYears02+"年\n"+"対象期間合計税額(万円)："+number[2]+"\n"+"適用税率(%)："+taxRate+"\n"+"再調達価格補正係数："+correctiveCoefficient+"\n"+"概算家屋評価額(万円)："+Math.floor(reconstructionCost*correctiveCoefficient);
 	}
 	else{
 		simpleResult="算出対象経過年数を確認して下さい";
