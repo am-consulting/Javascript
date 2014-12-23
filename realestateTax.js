@@ -140,7 +140,7 @@ function calculation(){
 		start=passedYears01;
 		end=passedYears02;
 		totalTax=0;
-		z=4;
+		z=5;
 		chk=0;
 		for(loop=start; loop<=end; loop++){
 			calAssessedValue();
@@ -174,8 +174,9 @@ function calculation(){
 		result=result.slice(0, -1);//delete "\n"
 		number[2]=totalTax;
 		number[3]=reconstructionCost;
+		number[4]=Math.floor(reconstructionCost*correctiveCoefficient);
 		thousandSeparator();
-		simpleResult=listType[buildingType]+"\n"+listStructure[structure/10-1]+"\n"+"再建築費(万円)："+number[3]+"\n"+"対象期間："+passedYears01+"年 - "+passedYears02+"年\n"+"対象期間合計税額(万円)："+number[2]+"\n"+"適用税率(%)："+taxRate+"\n"+"再調達価格補正係数："+correctiveCoefficient+"\n"+"概算家屋評価額(万円)："+Math.floor(reconstructionCost*correctiveCoefficient);
+		simpleResult=listType[buildingType]+"\n"+listStructure[structure/10-1]+"\n"+"再建築費(万円)："+number[3]+"\n"+"対象期間："+passedYears01+"年 - "+passedYears02+"年\n"+"対象期間合計税額(万円)："+number[2]+"\n"+"適用税率(%)："+taxRate+"\n"+"再調達価格補正係数："+correctiveCoefficient+"\n"+"概算家屋評価額(万円)："+number[4];
 	}
 	else{
 		simpleResult="算出対象経過年数を確認して下さい";
