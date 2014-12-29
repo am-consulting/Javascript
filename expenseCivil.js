@@ -377,12 +377,11 @@ function output02(){
 	document.form3.totalExpense.value=number[28];
 	document.form3.rateTotalExpense.value=rateTotalExpense;
 	document.form3.rateImageup.value=rateImageup;
-	document.form3.expenseImageup.value=number[16];
 	document.form3.rateKyoutsuukasetsu.value=rateKyoutsuukasetsu;
 	document.form3.rateGenbakanri.value=rateGenbakanri;
 	document.form3.rateIppanKanri.value=rateIppanKanri;
 	document.form3.coverageKyoutsuukasetsu.value=number[29];
-	document.form3.ratio.value=ratio;
+	document.form3.ratio.value=ratio.toExponential(6);;
 	document.form3.P.value=number[13];
 	document.form3.Pi.value=number[14];
 	document.form3.allocateShobunCost.value=number[15];
