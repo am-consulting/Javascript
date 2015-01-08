@@ -23,6 +23,13 @@ function getConditions(){//要parseFloat処理.
 	costChokusetsuKouji=parseFloat(document.form1.costChokusetsuKouji.value);
 	costTumiageKyoutsuuKasetsu=parseFloat(document.form1.costTumiageKyoutsuuKasetsu.value);
 	hoseiKyoutsuuKasetsu=parseFloat(document.form1.hoseiKyoutsuuKasetsu.value);
+	
+	
+	hoseiGenbaKanri=parseFloat(document.form1.hoseiGenbaKanri.value);
+	hoseiIppanKanri=parseFloat(document.form1.hoseiIppanKanri.value);
+	
+	
+	
 	costTumiageGenbaKanri=parseFloat(document.form1.costTumiageGenbaKanri.value);
 	hoseiKeiyakuHoshou=parseFloat(document.form1.hoseiKeiyakuHoshou.value);
 	hoseiKanriJimusho=parseFloat(document.form1.hoseiKanriJimusho.value);
@@ -35,6 +42,8 @@ function getConditions(){//要parseFloat処理.
 	//直接工事費または工期が未入力の場合は参考として直接工事費14億円、工期8ヶ月（月間出来高約1.75億円）を表示.
 	if(isNaN(costChokusetsuKouji) || costChokusetsuKouji<=0 || isNaN(Kouki) || Kouki<=0){costChokusetsuKouji=1.4*Math.pow(10,9);Kouki=8;}
 	if(isNaN(hoseiKyoutsuuKasetsu) || hoseiKyoutsuuKasetsu<=0){hoseiKyoutsuuKasetsu=1;}
+	if(isNaN(hoseiGenbaKanri) || hoseiGenbaKanri<=0){hoseiGenbaKanri=1;}
+	if(isNaN(hoseiIppanKanri) || hoseiIppanKanri<=0){hoseiIppanKanri=1;}
 	T=Kouki;
 }
 
@@ -176,7 +185,7 @@ function expenseGenbaKanri(){//現場管理費
 		}
 		rateGenbaKanri=tmprateGenbaKanri;
 	}
-	tmp=rateGenbaKanri;
+	tmp=rateGenbaKanri*hoseiGenbaKanri;
 	roundOff();
 	rateGenbaKanri=tmp;
 	expGenbaKanri=costJyunKouji*rateGenbaKanri/100+costTumiageGenbaKanri;
@@ -211,7 +220,7 @@ function expenseIppanKanri(){//一般管理費
 	else{
 		rateIppanKanri=a-b*Math.LOG10E*Math.log(costKoujiGenka/1000);
 	}
-	rateIppanKanri=rateIppanKanri*hoseiMaebaraikinKubun+hoseiKeiyakuHoshou;
+	rateIppanKanri=rateIppanKanri*hoseiMaebaraikinKubun*hoseiIppanKanri+hoseiKeiyakuHoshou;
 	tmp=rateIppanKanri;
 	roundOff();
 	rateIppanKanri=tmp;
@@ -286,5 +295,7 @@ function resultOuPut02(){
 	document.form3.hoseiKeiyakuHoshou.value=hoseiKeiyakuHoshou;
 	document.form3.hoseiKanriJimushoKyoutsuuKasetsu.value=hoseiKanriJimushoKyoutsuuKasetsu;
 	document.form3.hoseiKyoutsuuKasetsu.value=hoseiKyoutsuuKasetsu;
+	document.form3.hoseiGenbaKanri.value=hoseiGenbaKanri;
+	document.form3.hoseiIppanKanri.value=hoseiIppanKanri;
 }
 -->
